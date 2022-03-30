@@ -94,7 +94,6 @@ export class ProductTwelveComponent implements OnInit {
     }
 
     quickView(event: Event) {
-        console.log(this.product)
         event.preventDefault();
         this.modalService.showQuickView(this.product);
     }

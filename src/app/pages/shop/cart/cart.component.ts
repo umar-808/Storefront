@@ -43,7 +43,6 @@ export class CartComponent implements OnInit {
 	}
 
 	updateCart(event: any) {
-		console.log(this.cartService)
 		event.preventDefault();
 		event.target.parentElement.querySelector('.icon-refresh').classList.add('load-more-rotating');
 
@@ -60,12 +59,7 @@ export class CartComponent implements OnInit {
 		this.shippingCost = value;
 	}
 
-	onclick(prod) {
-		console.log(prod)
-	}
-
 	onChangeQty(event: number, product: any) {
-		console.log('prod', product)
 		product.quantity = event
 		document.querySelector('.btn-cart-update.disabled') && document.querySelector('.btn-cart-update.disabled').classList.remove('disabled');
 

@@ -3,11 +3,11 @@
         <div class="intro-section bg-image" style="background-color: #fff;">
             <div class="container">
 
-                <owl-carousel [options]="introSlider" [carouselClasses]="['owl-theme', 'sliding']" >
-                    <div *ngFor="let bannerUrl of storeBannerUrls;let i = index">
-                        <!-- <div> -->
+                <owl-carousel [options]="introSlider" [items]="storeBannerUrls" [carouselClasses]="['owl-theme', 'sliding']" >
+                    <div class="item" *ngFor="let bannerUrl of storeBannerUrls;let i = index">
+                        <div>
                             <div class="intro-slide" style="background-image: url({{bannerUrl}}); background-size: 100% 100%;"></div>
-                        <!-- </div> -->
+                        </div>
                     </div>
                 </owl-carousel>
 

@@ -24,6 +24,7 @@ import { ShopListOneComponent } from './shared/list/shop-list-one/shop-list-one.
 import { ShopListTwoComponent } from './shared/list/shop-list-two/shop-list-two.component';
 import { ShopListThreeComponent } from './shared/list/shop-list-three/shop-list-three.component';
 import { FormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule( {
 	declarations: [
@@ -51,7 +52,8 @@ import { FormsModule } from '@angular/forms';
 		NgbModule,
 		OwlModule,
 		NouisliderModule,
-		FormsModule
+		FormsModule,
+		AgmCoreModule
 	]
 } )
 

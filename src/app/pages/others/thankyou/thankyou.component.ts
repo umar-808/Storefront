@@ -10,7 +10,7 @@ export class ThankyouComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("Thank you page loaded")
+    
   }
 
 }

@@ -67,7 +67,6 @@ export class SidebarPageComponent implements OnInit {
 			}
 
 			this.storeService.getProductsByCategory(this.category, null, 0).then(value => {
-				console.log('category', this.category)
 				this.products = value.slice((this.pageNumber - 1) * this.perPage, (this.pageNumber) * this.perPage)
 				// this.products
 				this.totalCount = value.length

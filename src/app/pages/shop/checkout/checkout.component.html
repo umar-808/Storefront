@@ -64,10 +64,14 @@
                                 <label>Country <span class="text-danger">*</span></label>
                                 <input [(ngModel)]="userDeliveryDetails.deliveryCountry" disabled id="country" type="text" class="form-control" name="country" required>
     
+                                
+    
+                                <agm-map [zoom]="zoom" (mapClick)="mapClicked($event)" [mapTypeControl]="true" [latitude]="initlat" [longitude]="initlng">
+                                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                                </agm-map>
+                                
                                 <label>Address <span class="text-danger">*</span></label>
                                 <textarea [(ngModel)]="userDeliveryDetails.deliveryAddress" class="form-control" name="address" required></textarea>
-                                <!-- <input type="text" class="form-control" name="street2" placeholder="Appartments, suite, unit etc ..."
-                                    required> -->
     
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -77,7 +81,8 @@
     
                                     <div class="col-sm-6">
                                         <label>State <span class="text-danger">*</span></label>
-                                        <select class="form-control" (change)="selectState($event)">
+                                        <select class="form-control" (change)="selectState($event)" required>
+                                            <option value="" selected>Select a State</option>
                                             <option *ngFor="let state of states" [ngValue]="state">{{ state.name }}</option>
                                         </select>
                                     </div>
@@ -97,89 +102,6 @@
     
                                 <label>Email address <span class="text-danger">*</span></label>
                                 <input [(ngModel)]="userDeliveryDetails.deliveryContactEmail" type="email" name="email" class="form-control" required>
-    
-                                <!-- <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkout-create-acc">
-                                    <label class="custom-control-label" for="checkout-create-acc">Create an account?</label>
-                                </div>
-    
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox mt-0 address-box">
-                                        <input type="checkbox" class="custom-control-input" id="checkout-diff-address"
-                                            (change)="formToggle($event)">
-                                        <label class="custom-control-label" for="checkout-diff-address">Ship to a different
-                                            address?</label>
-                                    </div>
-                                    <div class="shipping-info" style="display: none;">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>First name <abbr class="required"
-                                                            title="required">*</abbr></label>
-                                                    <input type="text" class="form-control" />
-                                                </div>
-                                            </div>
-    
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Last name <abbr class="required"
-                                                            title="required">*</abbr></label>
-                                                    <input type="text" class="form-control" />
-                                                </div>
-                                            </div>
-                                        </div>
-    
-                                        <div class="form-group">
-                                            <label>Company name (optional)</label>
-                                            <input type="text" class="form-control" />
-                                        </div>
-    
-                                        <div class="select-custom">
-                                            <label>Country / Region <span class="required">*</span></label>
-                                            <select name="orderby" class="form-control">
-                                                <option value="" defaultValue="selected">Vanuatu</option>
-                                                <option value="1">Brunei</option>
-                                                <option value="2">Bulgaria</option>
-                                                <option value="3">Burkina Faso</option>
-                                                <option value="4">Burundi</option>
-                                                <option value="5">Cameroon</option>
-                                            </select>
-                                        </div>
-    
-                                        <div class="form-group mb-1 pb-2">
-                                            <label>Street address <abbr class="required" title="required">*</abbr></label>
-                                            <input type="text" class="form-control"
-                                                placeholder="House number and street name" />
-                                        </div>
-    
-                                        <div class="form-group">
-                                            <input type="text" class="form-control"
-                                                placeholder="Apartment, suite, unit, etc. (optional)" />
-                                        </div>
-    
-                                        <div class="form-group">
-                                            <label>Town / City <abbr class="required" title="required">*</abbr></label>
-                                            <input type="text" class="form-control" />
-                                        </div>
-    
-                                        <div class="select-custom">
-                                            <label>State / County <abbr class="required" title="required">*</abbr></label>
-                                            <select name="orderby" class="form-control">
-                                                <option value="" defaultValue="selected">NY</option>
-                                                <option value="1">Brunei</option>
-                                                <option value="2">Bulgaria</option>
-                                                <option value="3">Burkina Faso</option>
-                                                <option value="4">Burundi</option>
-                                                <option value="5">Cameroon</option>
-                                            </select>
-                                        </div>
-    
-                                        <div class="form-group">
-                                            <label>Postcode / ZIP <abbr class="required" title="required">*</abbr></label>
-                                            <input type="text" class="form-control" />
-                                        </div>
-                                    </div>
-                                </div> -->
     
                                 <label>Order notes (optional)</label>
                                 <textarea [(ngModel)]="userDeliveryDetails.deliveryNotes" class="form-control" cols="30" rows="4"

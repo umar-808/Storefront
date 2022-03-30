@@ -22,9 +22,9 @@ export class StoreService {
     async parseStoreFromUrl() {
         let domain = location.origin;
 
-        // if (isDevMode()) {
-        //     domain = 'mcd.dev-my.symplified.ai'
-        // }
+        if (isDevMode()) {
+            domain = 'mcd.dev-my.symplified.ai'
+        }
 
         domain = domain.split('.')[0].replace(/^(https?:|)\/\//, "");
 

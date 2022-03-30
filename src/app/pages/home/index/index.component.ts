@@ -67,7 +67,6 @@ export class IndexComponent implements OnInit {
 	async ngOnInit() {
 
 		await this.storeService.parseStoreFromUrl()
-		console.log(this.cartService)
 
 		Promise.all([
 			this.storeService.getStoreInfoByDomainName(),
@@ -87,10 +86,8 @@ export class IndexComponent implements OnInit {
 		for (let storeAsset of this.storeInfo.storeAssets) {
 			if (storeAsset.assetType == "BannerDesktopUrl") {
 				banners.push(storeAsset.assetUrl);
-				console.log(storeAsset.assetUrl)
 			}
 		}
 		this.storeBannerUrls = banners
-		console.log('banners', this.storeBannerUrls)
 	}
 }

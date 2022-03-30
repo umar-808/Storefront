@@ -46,18 +46,15 @@
 
         <div class="col-lg-3 col-md-3 col-6 order-md-last order-lg-last">
             <div class="product-list-action">
-                <div class="product-price" *ngIf="product.productInventories.length > 0">
-                    {{currency}} {{product.productInventories[0].price}}
-                </div>
 
-                <!-- <div class="product-price" *ngIf="product.productInventories[0].itemDiscount else elseBlock">
+                <div class="product-price" *ngIf="product.productInventories.length > 0 && product.productInventories[0].itemDiscount else priceBlock">
                     <span class="new-price">{{currency}} {{product.productInventories[0].itemDiscount.discountedPrice.toFixed(2)}}</span>
                     <span class="old-price">{{currency}} {{product.productInventories[0].price.toFixed(2)}}</span>
                 </div>
-                <ng-template #elseBlock>
-                    <div class="product-price">{{currency}} {{product.productInventories[0].price.toFixed(2)}}
+                <ng-template #priceBlock>
+                    <div class="product-price" *ngIf="product.productInventories.length > 0" >{{currency}} {{product.productInventories[0].price.toFixed(2)}}
                     </div>
-                </ng-template> -->
+                </ng-template>
 
                 <!-- <ng-template #elseBlock>
                     <div class="product-price" *ngIf="minPrice == maxPrice else elseBlock">${{ minPrice.toFixed(2) }}

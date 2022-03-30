@@ -4,9 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { OwlModule } from 'angular-owl-carousel';
-import {BreadcrumbModule} from 'angular-crumbs';
+import { BreadcrumbModule } from 'angular-crumbs';
 
 // NGRX
 import { StoreModule } from '@ngrx/store';
@@ -28,6 +28,7 @@ import { cartReducer } from './core/reducers/cart.reducer';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './shared/layout/layout.component';
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,10 @@ import { LayoutComponent } from './shared/layout/layout.component';
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCFhf1LxbPWNQSDmxpfQlx69agW-I-xBIw'
+    })
+
   ],
 
   providers: [],

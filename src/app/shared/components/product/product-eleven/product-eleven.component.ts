@@ -71,10 +71,6 @@ export class ProductElevenComponent implements OnInit {
 		}
 	}
 
-	onclick() {
-		console.log(this.product)
-	}
-
 	addToWishlist(event: Event) {
 		event.preventDefault();
 

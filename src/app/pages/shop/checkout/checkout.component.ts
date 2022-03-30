@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
 import { StoreService } from 'src/app/core/store/store.service';
-import { CartItem, CartTotals } from 'src/app/shared/classes/cart';
+import { CartTotals } from 'src/app/shared/classes/cart';
 import { DeliveryCharge, DeliveryDetails } from 'src/app/shared/classes/delivery';
 import { State } from 'src/app/shared/classes/region';
 import { Store, StoreTiming } from 'src/app/shared/classes/store';
@@ -21,7 +20,6 @@ declare var $: any;
 
 export class CheckoutComponent implements OnInit, OnDestroy {
 
-	cartItems: any = []
 	currency: string
 	userDeliveryDetails: DeliveryDetails
 	states: State[] = [];
@@ -39,8 +37,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 	currentTime: string
 	storeTiming: StoreTiming[]
 	isClosed = false
-
-	private subscr: Subscription;
+	initlat = 33.6920052;
+	initlng = 73.057033;
+	lat = 33.6920052;
+	lng = 73.057033;
+	zoom = 20
 
 	constructor(
 		private toastrService: ToastrService,
@@ -66,12 +67,64 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
 	async ngOnInit() {
 		this.currency = this.storeService.getCurrency()
-		this.cartItems = this.cartService.cart
 		await this.getStoreInfo();
 		this.populate()
 		this.isClosed = this.isStoreClosed()
+		this.getAddressFromLatlng(this.lat, this.lng)
+		// this.mapsAPILoader.load().then(() => {
+		// });
 
 		document.querySelector('body').addEventListener("click", () => this.clearOpacity())
+	}
+
+	centerChanged(e) {
+		this.lat = e.lat
+		this.lng = e.lng
+	}
+
+	mapClicked(e) {
+		this.lat = e.coords.lat
+		this.lng = e.coords.lng
+		this.getAddressFromLatlng(this.lat, this.lng)
+	}
+
+	getAddressFromLatlng(lat, lng) {
+		let latlng = new google.maps.LatLng(lat, lng)
+		let geocoder = new google.maps.Geocoder()
+		let request = {
+			'location': latlng
+		}
+		geocoder.geocode(request, (results, status) => {
+			if (status == google.maps.GeocoderStatus.OK) {
+				let address = ''
+				let city = ''
+				let postCode = ''
+				results.forEach(result => {
+					if (result) {
+						result.address_components.forEach(ac => {
+							if (ac.types.includes('route')) {
+								address = ac.long_name
+							}
+							if (ac.types.includes('administrative_area_level_2')) {
+								city = ac.long_name
+							}
+							if (ac.types.includes('postal_code')) {
+								postCode = ac.long_name
+							}
+						})
+					}
+				})
+				this.userDeliveryDetails.deliveryAddress = address
+				this.userDeliveryDetails.deliveryCity = city
+				this.userDeliveryDetails.deliveryPostcode = postCode
+				// this.selectState(results[0])
+				// let address = results[0].address_components
+				// let st = address[address.length-2].long_name
+				// let value = address.split(',')
+				// console.log(value[value.length-2])
+				// this.userDeliveryDetails.deliveryState = value[value.length-2]
+			}
+		})
 	}
 
 	populate() {
@@ -111,7 +164,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 	}
 
 	selectState(e): void {
-		this.userDeliveryDetails.deliveryState = e.target.value;
+		this.userDeliveryDetails.deliveryState = e.target.value
 		this.hasDeliveryCharges = false
 		this.submitButtonText = "Get Delivery Charges"
 	}
