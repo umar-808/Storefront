@@ -7,6 +7,8 @@ import { CartService } from 'src/app/shared/services/cart.service';
 import { environment } from 'src/environments/environment';
 import { StoreService } from 'src/app/core/store/store.service';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/shared/classes/category';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'shop-cart-page',
@@ -20,10 +22,17 @@ export class CartComponent implements OnInit {
 	SERVER_URL = environment.SERVER_URL;
 	shippingCost = 0;
 	currency: string
+	category: Category
 
 	private subscr: Subscription;
 
-	constructor(private store: Store<any>, public cartService: CartService, private storeService: StoreService, private toastrService: ToastrService) {
+	constructor(
+		private store: Store<any>,
+		public cartService: CartService,
+		private storeService: StoreService,
+		private toastrService: ToastrService,
+		private router: Router
+	) {
 	}
 
 	ngOnInit() {
@@ -36,6 +45,19 @@ export class CartComponent implements OnInit {
 	// ngOnDestroy() {
 	// 	this.subscr.unsubscribe();
 	// }
+
+	async onClick(product) {
+		this.category = await this.storeService.getCategoryById(product.productInventory.product.categoryId)
+
+		let seoUrl = product.productInventory.product.seoUrl.split('/')
+		let seoName = seoUrl[seoUrl.length - 1]
+		if (seoName[seoName.length - 1] == "}") {
+			seoName = seoName.slice(0, seoName.length - 1)
+		}
+
+		console.log("SeoName", seoName)
+		this.router.navigate(['/' + this.category.name.split(' ').join('-') + '/' + seoName])
+	}
 
 	trackByFn(index: number, item: any) {
 		if (!item) return null;

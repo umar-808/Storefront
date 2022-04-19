@@ -13,6 +13,7 @@ import { WishlistService } from 'src/app/shared/services/wishlist.service';
 import { sliderOpt } from 'src/app/shared/data';
 import { StoreService } from 'src/app/core/store/store.service';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/shared/classes/category';
 
 declare var $: any;
 
@@ -54,6 +55,7 @@ export class QuickViewComponent implements OnInit {
 	currentIndex = 0;
 	qty = 1;
 	pictures = []
+	category: Category
 
 	SERVER_URL = environment.SERVER_URL;
 	currency = ''
@@ -91,6 +93,12 @@ export class QuickViewComponent implements OnInit {
 
 		self.currentIndex = e.item.index;
 	}
+
+	async onClick() {
+        this.category = await this.storeService.getCategoryById(this.product.categoryId)
+
+        this.router.navigate(['/' + this.category.name.split(' ').join('-') + '/' + this.product.seoName])
+    }
 
 	async addToCart(event: Event) {
 		this.isLoading = true

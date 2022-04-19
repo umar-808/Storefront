@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { StoreService } from 'src/app/core/store/store.service';
+import { Store } from '../../classes/store';
 
 @Component({
 	selector: 'molla-footer',
@@ -11,12 +13,26 @@ export class FooterComponent implements OnInit {
 	@Input() containerClass = "container";
 	@Input() isBottomSticky = false;
 
+	storeInfo: Store
+	phoneNumber: string
+	email: string
+
 	year: any;
 
-	constructor() {
+	constructor( private storeService: StoreService) {
 	}
 
-	ngOnInit(): void {
+	async ngOnInit() {
+
+		await this.storeService.parseStoreFromUrl()
+
+		this.storeService.getStoreInfoByStoreId().then(
+			(value) => {
+				this.storeInfo = value
+				this.phoneNumber = value.phoneNumber
+				this.email = value.email
+			}
+		)
 		this.year = (new Date()).getFullYear();
 	}
 }

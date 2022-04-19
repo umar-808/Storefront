@@ -69,7 +69,7 @@ export class IndexComponent implements OnInit {
 		await this.storeService.parseStoreFromUrl()
 
 		Promise.all([
-			this.storeService.getStoreInfoByDomainName(),
+			this.storeService.getStoreInfoByStoreId(),
 			this.storeService.getCategories(),
 			this.storeService.getStoreProducts(),
 		])

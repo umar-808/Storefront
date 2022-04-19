@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../classes/product';
 
 import { environment } from 'src/environments/environment';
+import { Category } from '../../classes/category';
 
 @Component({
 	selector: 'molla-breadcrumb',
@@ -13,6 +14,7 @@ import { environment } from 'src/environments/environment';
 export class BreadcrumbComponent implements OnInit {
 
 	@Input() prev: Product;
+	@Input() category: Category
 	@Input() next: Product;
 	@Input() current: any;
 	@Input() fullWidth = false;

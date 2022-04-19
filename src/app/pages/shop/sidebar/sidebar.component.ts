@@ -27,6 +27,13 @@ export class SidebarPageComponent implements OnInit {
 	categoryName: any
 
 	constructor(private storeService: StoreService, public activeRoute: ActivatedRoute, public router: Router, public utilsService: UtilsService, public apiService: ApiService) {
+		
+	}
+
+	ngOnInit(): void {
+		if (window.innerWidth > 991) this.toggle = false;
+		else this.toggle = true;
+
 		this.activeRoute.queryParams.subscribe(params => {
 			this.category = params['category']
 			this.categoryName = params['name']
@@ -87,11 +94,6 @@ export class SidebarPageComponent implements OnInit {
 			// 	this.utilsService.scrollToPageContent();
 			// })
 		})
-	}
-
-	ngOnInit(): void {
-		if (window.innerWidth > 991) this.toggle = false;
-		else this.toggle = true;
 	}
 
 	@HostListener('window: resize', ['$event'])

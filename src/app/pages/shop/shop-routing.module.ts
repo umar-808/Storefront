@@ -43,22 +43,22 @@ const routes: Routes = [
 	// 	path: 'cart',
 	// 	component: CartComponent
 	// },
-	{
-		path: 'wishlist',
-		component: WishlistComponent
-	},
-	{
-		path: 'dashboard',
-		component: DashboardComponent
-	},
-	{
-		path: 'category/boxed',
-		component: ProductCategoryBoxedPageComponent
-	},
-	{
-		path: 'category/fullwidth',
-		component: ProductCategoryFluidPageComponent
-	}
+	// {
+	// 	path: 'wishlist',
+	// 	component: WishlistComponent
+	// },
+	// {
+	// 	path: 'dashboard',
+	// 	component: DashboardComponent
+	// },
+	// {
+	// 	path: 'category/boxed',
+	// 	component: ProductCategoryBoxedPageComponent
+	// },
+	// {
+	// 	path: 'category/fullwidth',
+	// 	component: ProductCategoryFluidPageComponent
+	// }
 ];
 
 @NgModule( {

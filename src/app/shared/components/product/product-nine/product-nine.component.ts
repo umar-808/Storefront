@@ -11,6 +11,7 @@ import { CompareService } from 'src/app/shared/services/compare.service';
 import { environment } from 'src/environments/environment';
 import { StoreService } from 'src/app/core/store/store.service';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/shared/classes/category';
 
 @Component({
 	selector: 'molla-product-nine',
@@ -26,6 +27,7 @@ export class ProductNineComponent implements OnInit {
 	minPrice = 99999;
 	currency: any
 	isLoading: boolean
+	category: Category
 
 	SERVER_URL = environment.SERVER_URL;
 
@@ -59,6 +61,12 @@ export class ProductNineComponent implements OnInit {
 		// this.minPrice = min;
 		// this.maxPrice = max;
 	}
+
+	async onClick() {
+        this.category = await this.storeService.getCategoryById(this.product.categoryId)
+
+        this.router.navigate(['/' + this.category.name.split(' ').join('-') + '/' + this.product.seoName])
+    }
 
 	async addToCart(event: Event) {
 		this.isLoading = true

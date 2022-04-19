@@ -15,7 +15,7 @@
                 <div class="product justify-content-between" *ngFor="let product of cartService.cart; let i = index">
                     <div class="product-cart-details">
                         <h4 class="product-title">
-                            <a>{{ product.productName }}</a>
+                            <a href="javascript:;" (click)="onClick(product)">{{ product.productName }}</a>
                         </h4>
 
                         <span class="cart-product-info">

@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="product-details w-100 pr-lg-4" *ngIf="product">
-                    <a [routerLink]="['/'+product.categoryId+'/'+product.seoName]">
+                    <a (click)="onClick()" href="javascript:;">
                         <h1 class="product-title">{{ product.name }}</h1>
                     </a>
 

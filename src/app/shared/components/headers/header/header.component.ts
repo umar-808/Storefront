@@ -30,7 +30,10 @@ export class HeaderComponent implements OnInit {
 	}
 
 	async ngOnInit() {
-		this.storeService.getStoreInfoByDomainName().then(
+
+		await this.storeService.parseStoreFromUrl()
+
+		this.storeService.getStoreInfoByStoreId().then(
 			(value) => {
 				this.storeInfo = value
 				this.populate()

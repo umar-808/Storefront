@@ -60,7 +60,7 @@ import { AgmCoreModule } from '@agm/core';
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCFhf1LxbPWNQSDmxpfQlx69agW-I-xBIw'
+      apiKey: 'AIzaSyDrE476fyWPmEI6EkdwqPPn3o-QbKgZjrs'
     })
 
   ],

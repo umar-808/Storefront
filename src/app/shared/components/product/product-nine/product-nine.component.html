@@ -7,7 +7,7 @@
                 <!-- <span class="product-label label-top" *ngIf="product.top">Top</span> -->
                 <span class="product-label label-out" *ngIf="product.status === 'OUT OF STOCK'">Out Of Stock</span>
 
-                <a [routerLink]="['/'+product.categoryId+'/'+product.seoName]">
+                <a (click)="onClick()" href="javascript:;">
                     <molla-image *ngIf="product.thumbnailUrl else elseBlock" [src]="product.thumbnailUrl" alt="Product"
                         class="product-image" fixedPt="100%">
                     </molla-image>
@@ -27,7 +27,7 @@
                 </div> -->
 
                 <h3 class="product-title" *ngIf="product.name">
-                    <a [routerLink]="['/'+product.categoryId+'/'+product.seoName]">{{ product.name }}</a>
+                    <a (click)="onClick()" href="javascript:;">{{ product.name }}</a>
                 </h3>
 
                 <div class="product-content" *ngIf="product.description">

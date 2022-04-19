@@ -47,7 +47,7 @@
         </div> -->
 
         <h3 class="product-title">
-            <a [routerLink]="['/'+product.categoryId+'/'+product.seoName]" *ngIf="product.name">{{ product.name }}</a>
+            <a href="javascript:;" (click)="onClick()" *ngIf="product.name">{{ product.name }}</a>
         </h3>
 
         <!-- <div class="product-price" *ngIf="product.productInventories.length > 0">

@@ -111,6 +111,18 @@ export class ApiService {
 		return this.http.get(`${environment.SERVER_URL}/elements/blogs`);
 	}
 
+	getStoreInfoByID(storeID: string) {
+		const header = {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json",
+				Authorization: "Bearer accessToken",
+			}),
+		};
+		const url = this.productServiceURL + "stores/" + storeID;
+
+		return this.http.get(url, header);
+	}
+
 	getStoreInfoByDomainName(domainName: string) {
 		const header = {
 			headers: new HttpHeaders({
@@ -125,6 +137,36 @@ export class ApiService {
 		const url = this.productServiceURL + "stores";
 
 		return this.http.get(url, header);
+	}
+
+	getCategoryById(categoryId): Observable<Category> {
+		const header = {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${this.token}`,
+			}),
+		}
+		const url = this.productServiceURL + "store-categories/" + categoryId
+
+		return this.http.get<Category>(url, header)
+	}
+
+	getCategoryByName(name, storeID): Observable<Category[]> {
+		const header = {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${this.token}`,
+			}),
+			params: {
+				name: name,
+				storeId: storeID
+			},
+		};
+		const url =
+			this.productServiceURL +
+			"store-categories"
+
+		return this.http.get<Category[]>(url, header)
 	}
 
 	getCategoryByStoreID(storeID): Observable<Category[]> {

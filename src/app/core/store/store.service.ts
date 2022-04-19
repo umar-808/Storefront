@@ -23,11 +23,10 @@ export class StoreService {
         let domain = location.origin;
 
         if (isDevMode()) {
-            domain = 'mcd.dev-my.symplified.ai'
+            console.log('Running in dev mode')
+            // domain = 'mcd.dev-my.symplified.ai'
+            domain = domain.split('.')[0].replace(/^(https?:|)\/\//, "");
         }
-
-        domain = domain.split('.')[0].replace(/^(https?:|)\/\//, "");
-
         const store: Store = await this.getStoreByDomainName(domain);
 
         if (this.getStoreId() !== store.id) {
@@ -53,6 +52,32 @@ export class StoreService {
 
     getCurrency() {
         return localStorage.getItem(this.currencyKey)
+    }
+
+    getCategoryById(categoryId): Promise<Category> {
+        return new Promise((resolve, reject) => {
+            this.apiService.getCategoryById(categoryId).subscribe(
+                (res: any) => {
+                    resolve(res.data)
+                },
+                err => {
+                    reject(err)
+                }
+            )
+        })
+    }
+
+    getCategoryByName(name: string): Promise<Category> {
+        return new Promise((resolve, reject) => {
+            this.apiService.getCategoryByName(name, this.getStoreId()).subscribe(
+                (res: any) => {
+                    resolve(res.data.content[0])
+                },
+                err => {
+                    reject(err)
+                }
+            )
+        })
     }
 
     getCategories(): Promise<Category[]> {
@@ -82,11 +107,11 @@ export class StoreService {
         })
     }
 
-    getStoreInfoByDomainName(): Promise<Store> {
+    getStoreInfoByStoreId(): Promise<Store> {
         return new Promise((resolve, reject) => {
-            this.apiService.getStoreInfoByDomainName(this.getStoreId()).subscribe(
+            this.apiService.getStoreInfoByID(this.getStoreId()).subscribe(
                 (res: any) => {
-                    resolve(res.data.content[0]);
+                    resolve(res.data);
                 },
                 (error) => {
                     console.error("Failed to get store assets", error);

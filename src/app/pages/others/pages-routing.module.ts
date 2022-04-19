@@ -11,42 +11,43 @@ import { ContactTwoPageComponent } from './contact-two/contact-two.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        redirectTo: 'about',
-        pathMatch: 'full'
-    },
-    {
-        path: 'about',
-        component: AboutOneComponent
-    },
-    {
-        path: 'about-2',
-        component: AboutTwoPageComponent
-    },
+    // {
+    //     path: '',
+    //     redirectTo: 'about',
+    //     pathMatch: 'full'
+    // },
+    // {
+    //     path: 'about',
+    //     component: AboutOneComponent
+    // },
+    // {
+    //     path: 'about-2',
+    //     component: AboutTwoPageComponent
+    // },
     {
         path: '404',
         component: PageNotFoundComponent
     },
-    {
-        path: 'login',
-        component: LoginPageComponent
-    },
-    {
-        path: 'faq',
-        component: FaqsPageComponent
-    },
-    {
-        path: 'contact',
-        component: ContactOnePageComponent
-    },
-    {
-        path: 'contact-2',
-        component: ContactTwoPageComponent
-    },
+    // {
+    //     path: 'login',
+    //     component: LoginPageComponent
+    // },
+    // {
+    //     path: 'faq',
+    //     component: FaqsPageComponent
+    // },
+    // {
+    //     path: 'contact',
+    //     component: ContactOnePageComponent
+    // },
+    // {
+    //     path: 'contact-2',
+    //     component: ContactTwoPageComponent
+    // },
     {
         path: 'thankyou',
-        component: ThankyouComponent
+        component: ThankyouComponent,
+        data: { breadcrumb: 'Thank you'}
     }
 ];
 

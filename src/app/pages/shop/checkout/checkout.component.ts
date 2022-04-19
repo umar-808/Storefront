@@ -70,7 +70,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 		await this.getStoreInfo();
 		this.populate()
 		this.isClosed = this.isStoreClosed()
-		this.getAddressFromLatlng(this.lat, this.lng)
+		// this.getAddressFromLatlng(this.lat, this.lng)
 		// this.mapsAPILoader.load().then(() => {
 		// });
 
@@ -85,7 +85,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 	mapClicked(e) {
 		this.lat = e.coords.lat
 		this.lng = e.coords.lng
-		this.getAddressFromLatlng(this.lat, this.lng)
+		// this.getAddressFromLatlng(this.lat, this.lng)
 	}
 
 	getAddressFromLatlng(lat, lng) {
