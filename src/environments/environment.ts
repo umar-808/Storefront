@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  demo: 'demo28',
+  SERVER_URL: 'http://localhost:1337',
 };
 
 /*
