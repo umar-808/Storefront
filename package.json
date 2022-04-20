@@ -1,7 +1,6 @@
 {
-  "name": "demo28",
+  "name": "store-front-m",
   "version": "1.0.0",
-  "homepage": "https://d-themes.com/angular/molla/demo28",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

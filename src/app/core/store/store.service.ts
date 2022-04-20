@@ -6,27 +6,24 @@ import { Store } from 'src/app/shared/classes/store';
 import { ApiService } from 'src/app/shared/services/api.service';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class StoreService {
-
-    storeIdKey = 'store_id'
-    currencyKey = 'currency'
+    storeIdKey = 'store_id';
+    currencyKey = 'currency';
     storeIdChange: Subject<string> = new Subject<string>();
 
-    constructor(private http: HttpClient, private apiService: ApiService) {
-
-    }
+    constructor(private http: HttpClient, private apiService: ApiService) { }
 
     async parseStoreFromUrl() {
         let domain = location.origin;
 
         if (isDevMode()) {
-            console.log('Running in dev mode')
-            // domain = 'mcd.dev-my.symplified.ai'
-            domain = domain.split('.')[0].replace(/^(https?:|)\/\//, "");
+            domain = 'maliktechsports.dev-my.symplified.ai';
+            domain = domain.split('.')[0].replace(/^(https?:|)\/\//, '');
         }
+
+
         const store: Store = await this.getStoreByDomainName(domain);
 
         if (this.getStoreId() !== store.id) {
@@ -34,8 +31,7 @@ export class StoreService {
             this.storeIdChange.next();
         }
 
-        this.setCurrency(store.regionCountry.currencySymbol)
-
+        this.setCurrency(store.regionCountry.currencySymbol);
     }
 
     private setStoreId(storeId: string) {
@@ -47,7 +43,7 @@ export class StoreService {
     }
 
     private setCurrency(currency) {
-        localStorage.setItem(this.currencyKey, currency)
+        localStorage.setItem(this.currencyKey, currency);
     }
 
     getCurrency() {
